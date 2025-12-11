@@ -14,6 +14,7 @@ import { StateService } from './services/state.service';
 })
 export class AppComponent implements OnInit {
   public boxIds: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  public totalCalories$ = this.stateService.getTotalCalories$();
 
   constructor(private stateService: StateService) {}
 

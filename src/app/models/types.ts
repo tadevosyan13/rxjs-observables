@@ -2,6 +2,7 @@ export interface Option {
   id: number;
   name: string;
   value: string;
+  calories: number;
   imageUrl: string;
 }
 

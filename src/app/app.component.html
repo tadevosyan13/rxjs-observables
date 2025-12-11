@@ -1,6 +1,11 @@
 <div class="container">
   <h1>Box Selection App - RxJS Version - Acro Companion</h1>
-  
+    <div class="stats">
+        <div class="total-calories">
+            <span class="label">Total Calories:</span>
+            <span class="value">{{ totalCalories$ | async }}</span>
+        </div>
+    </div>
   <button 
   (click)="clearAllSelections()" 
   class="clear-button">

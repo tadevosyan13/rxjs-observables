@@ -66,6 +66,24 @@ export class StateService {
     );
   }
 
+    getTotalCalories$(): Observable<number> {
+        return this.selections$.pipe(
+            map(selections => {
+                let total = 0;
+                selections.forEach((optionId) => {
+                    if (optionId !== null) {
+                        const option = this.getOptionById(optionId);
+                        if (option) {
+                            total += option.calories;
+                        }
+                    }
+                });
+                return total;
+            }),
+            distinctUntilChanged()
+        );
+    }
+
   emitBoxClick(boxId: number): void {
     this.boxClickSubject.next(boxId);
   }
