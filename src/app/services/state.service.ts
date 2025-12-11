@@ -109,16 +109,17 @@ export class StateService {
     this.advanceToNextBox(boxId);
   }
 
-  private advanceToNextBox(currentBoxId: number): void {
-    const nextBoxId = currentBoxId + 1;
-    
-    if (nextBoxId <= 10) {
-      this.activeBoxIdSubject.next(nextBoxId);
-    } else {
-      this.isOptionSelectorVisibleSubject.next(false);
-      this.activeBoxIdSubject.next(null);
+    private advanceToNextBox(currentBoxId: number): void {
+        const LAST_BOX_ID = 10;
+
+        const nextBoxId = Math.min(currentBoxId + 1, LAST_BOX_ID);
+        this.activeBoxIdSubject.next(nextBoxId);
+
+        if (nextBoxId === LAST_BOX_ID) {
+            this.isOptionSelectorVisibleSubject.next(true);
+        }
     }
-  }
+
 
 
   private handleClearAll(): void {

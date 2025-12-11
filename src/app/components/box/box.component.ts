@@ -1,7 +1,7 @@
 import { Component, Input, OnInit, OnDestroy, ChangeDetectionStrategy  } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Observable, Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import {map, takeUntil} from 'rxjs/operators';
 import { StateService } from '../../services/state.service';
 import { Option } from '../../models/types';
 
@@ -17,21 +17,18 @@ export class BoxComponent implements OnInit, OnDestroy {
   @Input({ required: true }) boxId!: number;
 
   public isActive$!: Observable<boolean>;
-  public selectedOption: Option | null = null;
+    public selectedOption$!: Observable<Option | null>;
   private destroy$ = new Subject<void>();
 
   constructor(private stateService: StateService) {}
 
   ngOnInit(): void {
     this.isActive$ = this.stateService.isBoxActive$(this.boxId);
-    this.stateService
-      .getBoxSelection$(this.boxId)
-      .pipe(takeUntil(this.destroy$))
-      .subscribe((selectedOptionId) => {
-        this.selectedOption = selectedOptionId
-          ? this.stateService.getOptionById(selectedOptionId) || null
-          : null;
-      });
+      this.selectedOption$ = this.stateService.getBoxSelection$(this.boxId).pipe(
+          map(selectedOptionId =>
+              selectedOptionId ? this.stateService.getOptionById(selectedOptionId) || null : null
+          )
+      );
   }
 
   ngOnDestroy(): void {
