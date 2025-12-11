@@ -1,0 +1,17 @@
+<div class="container">
+  <h1>Box Selection App - RxJS Version - Acro Companion</h1>
+  
+  <button 
+  (click)="clearAllSelections()" 
+  class="clear-button">
+  Remove All Selections
+  </button>
+
+  <div class="boxes-container">
+    @for (boxId of boxIds; track boxId) {
+      <app-box [boxId]="boxId"></app-box>
+    }
+  </div>
+
+  <app-option-selector></app-option-selector>
+</div>

@@ -1,0 +1,18 @@
+@if (isVisible$ | async) {
+  <div class="option-selector">
+    <h3>Select an Option for Box {{ activeBoxId }}</h3>
+    
+    <div class="options-grid">
+      @for (option of options; track option.id) {
+        <div 
+          class="option-item"
+          [class.selected]="option.id === selectedOptionId"
+          (click)="onOptionClick(option)">
+          <div class="emoji">{{ option.imageUrl }}</div>
+          <div class="name">{{ option.name }}</div>
+          <div class="value">{{ option.value }}</div>
+        </div>
+      }
+    </div>
+  </div>
+}

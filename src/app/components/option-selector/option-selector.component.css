@@ -1,0 +1,65 @@
+.option-selector {
+  margin-top: 30px;
+  padding: 20px;
+  border: 2px solid #007bff;
+  border-radius: 8px;
+  background-color: #f8f9fa;
+}
+
+h3 {
+  margin-top: 0;
+  margin-bottom: 20px;
+  color: #007bff;
+  text-align: center;
+}
+
+.options-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 15px;
+}
+
+.option-item {
+  border: 2px solid #dee2e6;
+  border-radius: 8px;
+  padding: 15px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background-color: #fff;
+}
+
+.option-item:hover {
+  border-color: #007bff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.option-item.selected {
+  border-color: #28a745;
+  background-color: #d4edda;
+  border-width: 3px;
+}
+
+.emoji {
+  font-size: 32px;
+  margin-bottom: 8px;
+}
+
+.name {
+  font-weight: bold;
+  font-size: 13px;
+  margin-bottom: 4px;
+  color: #333;
+}
+
+.value {
+  font-size: 11px;
+  color: #666;
+}
+
+@media (max-width: 768px) {
+  .options-grid {
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  }
+}

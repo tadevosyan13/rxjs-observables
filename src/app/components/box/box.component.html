@@ -1,0 +1,18 @@
+<div 
+class="box"
+[class.active]="isActive$ | async"
+[class.has-selection]="selectedOption !== null"
+(click)="onBoxClick()">
+
+@if (selectedOption) {
+  <div class="selected-content">
+    <div class="emoji">{{ selectedOption.imageUrl }}</div>
+    <div class="name">{{ selectedOption.name }}</div>
+    <div class="value">{{ selectedOption.value }}</div>
+  </div>
+} @else {
+  <div class="empty-box">
+    <span>Box {{ boxId }}</span>
+  </div>
+}
+</div>
